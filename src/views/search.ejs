@@ -1,0 +1,39 @@
+<%- include('partials/head', {title: "Resultados de búsqueda" }) %>
+<%- include('partials/header') %>
+<script src="/js/searchTitles.js" defer></script>    
+
+    <section>
+        <% if (driveFiles.length == 0) { %>
+            <h1>RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
+            <h2>No se encontraron resultados.</h2>
+        <% } else { %>
+            <h1>RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
+        <% } %>
+
+        <h3 id="folders-title" style="display: none;">CARPETAS:</h3>
+      
+        <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
+        
+            <% if (file.mimeType == 'application/vnd.google-apps.folder') { %>
+                <form action="/<%= file.id%>" method="POST" >
+                    <a href="javascript:{}" onclick= parentElement.submit()><p><%= file.name%></p></a>
+                    <input type="hidden" class="folder-name" name="folderName" value="<%= file.name%>">
+                </form>
+            <% } %>       
+            
+        <% }) %>
+
+        <h3 id="files-title" style="display: none;">ARCHIVOS:</h3>
+
+        <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
+
+            <% if (file.mimeType != 'application/vnd.google-apps.folder') { %>
+                <a class="single-file" href="<%= file.webViewLink%>"><p><%= file.name%></p></a>
+            <% } %>   
+
+        <% }) %>
+
+    </section>
+
+</body>
+</html>
