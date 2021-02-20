@@ -58,20 +58,22 @@ module.exports = {
           const filesArray = await getFileList(drive).catch((err) => {
             if (err) console.log(err);
           });  
+          // res.send(filesArray)
           res.render('index', {driveFiles: filesArray})
         };
   
         async function getFileList(drive) {
           const res = await drive.files.list({
-            pageSize: 300,
+            pageSize: 1000,
+            q: "'1aoQ3ejrmtOgpKIiMqvzZKG05kAxeFDGz' in parents",
             fields: "files(id, name, mimeType, webViewLink, parents)",
           });
           let filesArray = res.data.files;
-          filesArray = filesArray.filter ( file => {
-            if (file.parents != undefined && file.parents[0] == "1aoQ3ejrmtOgpKIiMqvzZKG05kAxeFDGz") {
-              return file
-            };
-          })
+          // filesArray = filesArray.filter ( file => {
+          //   if (file.parents != undefined && file.parents[0] == "1aoQ3ejrmtOgpKIiMqvzZKG05kAxeFDGz") {
+          //     return file
+          //   };
+          // })
           console.log(filesArray)
           return filesArray
         };
@@ -99,15 +101,23 @@ module.exports = {
       
         async function getFileList(drive) {
             const res = await drive.files.list({
-                pageSize: 300,
-                fields: "files(id, name, mimeType, webViewLink, parents)",
+              q: `name contains '${inputValue}' `,
+              pageSize: 1000,
+              fields: "files(id, name, mimeType, webViewLink, parents)",
             });
             let filesArray = res.data.files;
+            // CHECK IF IT IS INSIDE A FOLDER
             filesArray = filesArray.filter ( file => {
-                if (file.parents != undefined && file.name.toLowerCase().includes(inputValue.toLowerCase())) {
+                if (file.parents != undefined) {
                     return file
                 };
             })
+            // filesArray = filesArray.filter ( file => {
+            //     if (file.parents != undefined && file.name.toLowerCase().includes(inputValue.toLowerCase())) {
+            //         return file
+            //     };
+            // })
+            
             console.log(filesArray)
             return filesArray
         };
@@ -134,15 +144,16 @@ module.exports = {
       
         async function getFileList(drive) {
           const res = await drive.files.list({
-            pageSize: 300,
+            q: `'${folderId}' in parents`,
+            pageSize: 1000,
             fields: "files(id, name, mimeType, webViewLink, parents)",
           });
           let filesArray = res.data.files;
-          filesArray = filesArray.filter ( file => {
-            if (file.parents != undefined && file.parents[0] == folderId) {
-              return file
-            };
-          })
+          // filesArray = filesArray.filter ( file => {
+          //   if (file.parents != undefined && file.parents[0] == folderId) {
+          //     return file
+          //   };
+          // })
           // console.log(filesArray)
           return filesArray
         };       
