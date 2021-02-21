@@ -2,13 +2,15 @@
 <%- include('partials/header') %>
 <script src="/js/searchTitles.js" defer></script>    
 
-    <section>
+    
         <% if (typeof pageTitle != "undefined") { %>
             <h1><%= pageTitle%></h1>
         <% } else { %>
             <h1>HISTORIA DEL TEATRO OCCIDENTAL I</h1>
         <% } %>
-
+    
+        <section class="container d-md-flex">    
+    <article>
         <h3 id="folders-title" style="display: none;">SUBCARPETAS:</h3>
 
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
@@ -21,7 +23,8 @@
             <% } %>       
             
         <% }) %>
-
+    </article>
+    <article>
         <h3 id="files-title" style="display: none;">ARCHIVOS EN CARPETA:</h3>
 
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
@@ -31,7 +34,8 @@
             <% } %>   
 
         <% }) %>
-
+            </td>
+    </article>    
     </section>
 
     <section>

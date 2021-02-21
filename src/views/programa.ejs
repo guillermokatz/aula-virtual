@@ -1,0 +1,20 @@
+<%- include('partials/head', {title: "Programa de la materia" }) %>
+<%- include('partials/header') %>
+
+<script>
+    window.addEventListener("load", function(){
+        pdfHeight = window.innerHeight - document.querySelector(".navbar").clientHeight;
+        document.querySelector(".iframePDF").style.height = `${pdfHeight}px`;
+    })
+
+    window.addEventListener("resize", function(){
+        pdfHeight = window.innerHeight - document.querySelector(".navbar").clientHeight;
+        document.querySelector(".iframePDF").style.height = `${pdfHeight}px`;
+    });
+</script>
+
+<iframe class="iframePDF" src="https://docs.google.com/viewer?srcid=1pFw3plWrYitN7oiNGKfJItrcCIZq1jtv&pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="border: none; display: block; overflow:scroll; width: 100%; height: 100vh">
+</iframe>
+
+</body>
+</html>

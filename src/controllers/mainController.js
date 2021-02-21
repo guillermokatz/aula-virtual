@@ -158,6 +158,14 @@ module.exports = {
           return filesArray
         };       
       
+    },
+
+    info: (req, res) => {
+      res.render('about')
+    },
+
+    programa: (req, res) => {
+      res.render('programa')
     }
 
 };

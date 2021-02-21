@@ -1,14 +1,46 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">DISCO VIRTUAL</a>
+    <nav class="navbar navbar-expand-lg navbar-light navcustom p-3">
+        <div class="container-fluid ">
+          <a class="navbar-brand text-white" href="/">HISTORIA I TEATRO</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <script defer>
+            window.addEventListener("load", function(){
+              let infoLink = document.getElementById("infoLink");
+              let progLink = document.getElementById("progLink");
+              switch(window.location.pathname){
+                case "/info":
+                  infoLink.setAttribute("aria-current","page");
+                  infoLink.classList.add("active");
+                break;
+
+                case "/programa":
+                  progLink.setAttribute("aria-current","page");
+                  progLink.classList.add("active");
+                break;
+              }
+            })          
+          </script>
+
+          <div class="collapse navbar-collapse text-dark" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a id="infoLink" class="nav-link"  href="/info">Información</a>
+              </li>
+              <li class="nav-item">
+                <a id="progLink" class="nav-link" href="/programa">Programa</a>
+              </li>
+              <li class="nav-item">
+                <a id="driveLink" class="nav-link" href="https://drive.google.com/drive/u/0/folders/1aoQ3ejrmtOgpKIiMqvzZKG05kAxeFDGz">Google Drive</a>
+              </li>
+            </ul>
+
             <form class="d-flex" action="/search" method="POST">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="query">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <input class="form-control me-2 custominput" type="search" placeholder="Buscar archivos" aria-label="Search" name="query">
+                <button class="btn btn-outline-dark" type="submit">BUSCAR</button>
             </form>
           </div>
         </div>

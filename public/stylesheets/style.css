@@ -1,8 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root {
+  --yellow-light: #ffcd39
 }
 
-a {
-  color: #00B7FF;
+@font-face {
+	font-family: 'Rubik';
+	src: url('/fonts/Rubik-VariableFont_wght.ttf')
+}
+body {
+  font-family: 'Rubik';  
+}
+
+
+.navcustom {
+  background-color: var(--yellow-light);
+  
+}
+
+.custominput:focus {
+  box-shadow: 0 0 0 0.25rem rgb(169 152 137 / 25%);
+  border-color: #A99889
 }
