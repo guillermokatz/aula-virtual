@@ -4,14 +4,14 @@
 
     
         <% if (typeof pageTitle != "undefined") { %>
-            <h1><%= pageTitle%></h1>
+            <h1 class="text-center p-2"><%= pageTitle%></h1>
         <% } else { %>
-            <h1>HISTORIA DEL TEATRO OCCIDENTAL I</h1>
+            <h1 class="text-center p-2">DISCO VIRTUAL</h1>
         <% } %>
     
-        <section class="container d-md-flex">    
-    <article>
-        <h3 id="folders-title" style="display: none;">SUBCARPETAS:</h3>
+        <section class="container d-md-flex justify-content-center fs-4">    
+    <article id="folders-title" style="display: none;" class="w-50">
+        <h3 >SUBCARPETAS:</h3>
 
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
         
@@ -24,8 +24,8 @@
             
         <% }) %>
     </article>
-    <article>
-        <h3 id="files-title" style="display: none;">ARCHIVOS EN CARPETA:</h3>
+    <article id="files-title" style="display: none;" class="w-50">
+        <h3 >ARCHIVOS EN CARPETA:</h3>
 
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
 
