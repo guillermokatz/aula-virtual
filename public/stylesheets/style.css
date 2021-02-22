@@ -45,3 +45,8 @@ body {
   background-color: var(--yellow-light);
   color: black;
 }
+
+.img-custom:hover {
+  opacity: 0.7;
+  transition: 200ms;
+}

@@ -28,6 +28,9 @@ function filterFileType(filesArray) {
       case 'audio/mpeg':
         file.mimeType = 'video'
         break;
+      case 'audio/mp3':
+          file.mimeType = 'video'
+          break;
       case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
         file.mimeType = 'ppt'
         break;
