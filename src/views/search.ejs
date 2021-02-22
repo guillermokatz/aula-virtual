@@ -21,7 +21,7 @@
         
             <% if (file.mimeType == 'application/vnd.google-apps.folder') { %>
                 <form action="/<%= file.id%>" method="POST" >
-                    <a class="link-dark a-list py-2 ps-2" href="javascript:{}" onclick= parentElement.submit()><%= file.name%></a>
+                    <a class="link-dark a-list py-2 ps-2" href="javascript:{}" onclick= parentElement.submit()><img class="px-2 pb-1" src="/images/folder.png"><%= file.name%></a>
                     <input type="hidden" class="folder-name" name="folderName" value="<%= file.name%>">
                 </form>
             <% } %>       
@@ -34,7 +34,7 @@
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
 
             <% if (file.mimeType != 'application/vnd.google-apps.folder') { %>
-                <a class="single-file link-dark a-list py-2 ps-2" href="<%= file.webViewLink%>"><%= file.name%></a>
+                <a class="single-file link-dark a-list py-2 ps-2 text-break" href="<%= file.webViewLink%>"><img class="px-2 pb-1" src="/images/<%= file.mimeType%>.png"><%= file.name%></a>
             <% } %>   
 
         <% }) %>

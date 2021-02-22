@@ -7,6 +7,41 @@ const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const TOKEN_PATH = 'token.json';
 // let driveFiles;
 
+function filterFileType(filesArray) {
+  return filesArray.filter ( file => {
+    switch (file.mimeType) {
+      case 'application/pdf':
+        file.mimeType = 'pdf'
+        break;
+      case 'video/mp4':
+        file.mimeType = 'video'
+        break;
+      case 'image/jpeg':
+        file.mimeType = 'img'
+        break;
+      case 'image/png':
+        file.mimeType = 'img'
+        break;
+      case 'application/octet-stream':
+        file.mimeType = 'doc'
+        break;
+      case 'audio/mpeg':
+        file.mimeType = 'video'
+        break;
+      case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+        file.mimeType = 'ppt'
+        break;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        file.mimeType = 'doc'
+        break;
+      case 'application/vnd.google-apps.document':
+        file.mimeType = 'doc'
+        break;
+    };
+    return file
+  })
+}
+
 
 // drive auth
 function authorize(credentials, callback) {          
@@ -69,6 +104,7 @@ module.exports = {
             fields: "files(id, name, mimeType, webViewLink, parents)",
           });
           let filesArray = res.data.files;
+          filesArray = filterFileType(filesArray);
           // filesArray = filesArray.filter ( file => {
           //   if (file.parents != undefined && file.parents[0] == "1aoQ3ejrmtOgpKIiMqvzZKG05kAxeFDGz") {
           //     return file
@@ -111,7 +147,8 @@ module.exports = {
                 if (file.parents != undefined) {
                     return file
                 };
-            })
+            });
+            filesArray = filterFileType(filesArray);
             // filesArray = filesArray.filter ( file => {
             //     if (file.parents != undefined && file.name.toLowerCase().includes(inputValue.toLowerCase())) {
             //         return file
@@ -149,6 +186,8 @@ module.exports = {
             fields: "files(id, name, mimeType, webViewLink, parents)",
           });
           let filesArray = res.data.files;
+          filesArray = filterFileType(filesArray);
+          console.log(filesArray)
           // filesArray = filesArray.filter ( file => {
           //   if (file.parents != undefined && file.parents[0] == folderId) {
           //     return file

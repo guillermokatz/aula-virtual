@@ -23,8 +23,8 @@ body {
 
 .a-custom:hover {
   color: var(--yellow-light);
-  transform: translate(4px); 
-  transition: 300ms;
+  /* transform: translate(4px);  */
+  transition: 200ms;
   display: inline-block;
 }
 .navcustom {
