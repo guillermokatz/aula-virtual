@@ -2,38 +2,45 @@
 <%- include('partials/header') %>
 <script src="/js/searchTitles.js" defer></script>    
 
-    <section>
-        <% if (driveFiles.length == 0) { %>
-            <h1>RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
-            <h2>No se encontraron resultados.</h2>
-        <% } else { %>
-            <h1>RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
+<% if (driveFiles.length == 0) { %>
+    <h1 class="ps-4 my-3">RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
+    <h2 class="ps-4 my-3">No se encontraron resultados.</h2>
+    <% } else { %>
+        <h1 class="ps-4 my-3">RESULTADOS DE BÚSQUEDA: "<%=inputValue%>"</h1>
         <% } %>
-
-        <h3 id="folders-title" style="display: none;">CARPETAS:</h3>
-      
+        
+        <main class="container-fluid">
+        <section class="row justify-content-around mx-auto col-md-10 fs-4 mb-5">
+        
+            <article id="folders-title" style="display: none;" class="col-md-5 bg-light shadow rounded-2 pb-2 mb-4 mb-md-0">
+        
+                <h3 class="my-2 p-2 text-white bg-dark">CARPETAS:</h3>
+        
+        
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
         
             <% if (file.mimeType == 'application/vnd.google-apps.folder') { %>
                 <form action="/<%= file.id%>" method="POST" >
-                    <a href="javascript:{}" onclick= parentElement.submit()><p><%= file.name%></p></a>
+                    <a class="link-dark a-list py-2 ps-2" href="javascript:{}" onclick= parentElement.submit()><%= file.name%></a>
                     <input type="hidden" class="folder-name" name="folderName" value="<%= file.name%>">
                 </form>
             <% } %>       
             
         <% }) %>
-
-        <h3 id="files-title" style="display: none;">ARCHIVOS:</h3>
+    </article>
+        <article id="files-title" style="display: none;" class="col-md-6 bg-light shadow rounded-2 pb-2">
+        <h3 class="my-2 p-2 text-white bg-dark">ARCHIVOS:</h3>
 
         <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
 
             <% if (file.mimeType != 'application/vnd.google-apps.folder') { %>
-                <a class="single-file" href="<%= file.webViewLink%>"><p><%= file.name%></p></a>
+                <a class="single-file link-dark a-list py-2 ps-2" href="<%= file.webViewLink%>"><%= file.name%></a>
             <% } %>   
 
         <% }) %>
-
+    </article>
     </section>
+    </main>
 
 </body>
 </html>

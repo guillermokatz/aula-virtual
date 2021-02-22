@@ -1,46 +1,54 @@
-<%- include('partials/head', {title: "Aula Virtual - Historia I" }) %>
+<%- include('partials/head', {title: "Disco Virtual - Historia I" }) %>
 <%- include('partials/header') %>
 <script src="/js/searchTitles.js" defer></script>    
 
     
         <% if (typeof pageTitle != "undefined") { %>
-            <h1 class="text-center p-2"><%= pageTitle%></h1>
+            <h1 class="ps-4 my-3"><%= pageTitle%></h1>
         <% } else { %>
-            <h1 class="text-center p-2">DISCO VIRTUAL</h1>
+            <h1 class="ps-4 my-3">DISCO VIRTUAL</h1>
         <% } %>
-    
-        <section class="container d-md-flex justify-content-center fs-4">    
-    <article id="folders-title" style="display: none;" class="w-50">
-        <h3 >SUBCARPETAS:</h3>
 
-        <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
         
-            <% if (file.mimeType == 'application/vnd.google-apps.folder') { %>
-                <form action="/<%= file.id%>" method="POST" >
-                    <a href="javascript:{}" onclick= parentElement.submit()><p><%= file.name%></p></a>
-                    <input type="hidden" class="folder-name" name="folderName" value="<%= file.name%>">
-                </form>
-            <% } %>       
+        <main class="container-fluid">
+            <section class="row justify-content-around mx-auto col-md-10 fs-4 mb-5">
+
+            <article id="folders-title" style="display: none;" class="col-md-5 bg-light shadow rounded-2 pb-2 mb-4 mb-md-0">
+        
+                <h3 class="my-2 p-2 text-white bg-dark">CARPETAS:</h3>
+
+                <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
+                
+                    <% if (file.mimeType == 'application/vnd.google-apps.folder') { %>
+                        <form action="/<%= file.id%>" method="POST" >
+                            <a class="link-dark a-list py-2 ps-2" href="javascript:{}" onclick= parentElement.submit()><%= file.name%></a>
+                            <input type="hidden" class="folder-name" name="folderName" value="<%= file.name%>">
+                        </form>
+                    <% } %>       
+                    
+                <% }) %>
+            </article>
+
+            <article id="files-title" style="display: none;" class="col-md-6 bg-light shadow rounded-2 pb-2">
             
-        <% }) %>
-    </article>
-    <article id="files-title" style="display: none;" class="w-50">
-        <h3 >ARCHIVOS EN CARPETA:</h3>
+                <h3 class="my-2 p-2 text-white bg-dark">ARCHIVOS EN CARPETA:</h3>
 
-        <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
+                <% driveFiles.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach( file => { %>
 
-            <% if (file.mimeType != 'application/vnd.google-apps.folder') { %>
-                <a class="single-file" href="<%= file.webViewLink%>"><p><%= file.name%></p></a>
-            <% } %>   
+                    <% if (file.mimeType != 'application/vnd.google-apps.folder') { %>
+                        <a class="single-file link-dark a-list py-2 ps-2" href="<%= file.webViewLink%>"><%= file.name%></a>
+                    <% } %>   
 
-        <% }) %>
-            </td>
-    </article>    
-    </section>
+                <% }) %>
+                    
+            </article>  
 
-    <section>
+        </section>
+        </main>
+
+    <section class="container text-center mb-3">
         <% if (typeof pageTitle != "undefined") { %>
-            <button type="button" onclick=window.history.back()>VOLVER</button>
+            <button class="button-custom btn btn-secondary btn-lg shadow fs-3" type="button" onclick=window.history.back()>VOLVER</button>
         <% } %>
     </section>
 

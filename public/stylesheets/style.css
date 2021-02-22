@@ -9,8 +9,24 @@
 body {
   font-family: 'Rubik';  
 }
+.a-list {
+  text-decoration: none;
+  display:block;
+  transition: 30ms;
+}
 
+.a-list:hover {
+  background-color: var(--yellow-light);
+  color: white;
+  transition: 30ms;
+}
 
+.a-custom:hover {
+  color: var(--yellow-light);
+  transform: translate(4px); 
+  transition: 300ms;
+  display: inline-block;
+}
 .navcustom {
   background-color: var(--yellow-light);
   
@@ -19,4 +35,13 @@ body {
 .custominput:focus {
   box-shadow: 0 0 0 0.25rem rgb(169 152 137 / 25%);
   border-color: #A99889
+}
+
+.button-custom {
+  border-radius: 5px;
+  border: 0px
+}
+.button-custom:hover {
+  background-color: var(--yellow-light);
+  color: black;
 }
